@@ -5,7 +5,10 @@
     <title>Book Form</title>
 </head>
 <body>
-<form th:action="@{/savebook}" th:object="${abook}" method="post">
+<form action="#" th:action="@{/savebook}" th:object="${book}" method="post">
+    <div class="container">
+        <input type="hidden" th:field="*{id}">
+    </div>
 
 
 

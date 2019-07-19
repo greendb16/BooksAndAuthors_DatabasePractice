@@ -28,13 +28,13 @@ public class HomeController {
 
     @RequestMapping("/addbook")
     public String addBook(Model model){
-        model.addAttribute("abook", new Book());
+        model.addAttribute("book", new Book());
         model.addAttribute("bookAuthors", authorRepository.findAll());
         return "book";
     }
 
     @RequestMapping("/savebook")
-    public String saveBook(@ModelAttribute("abook") Book book, Model model){
+    public String saveBook(@ModelAttribute("aBook") Book book, Model model){
         bookList.save(book);
         return "redirect:/";
     }

@@ -20,8 +20,8 @@ public class Author {
     private String lastName;
     private String Genre;
 
-    @ManyToMany
-    private Set<Book> library;
+    @ManyToMany (mappedBy = "library")
+    private Set<Book> books;
 
     public long getId() {
         return id;
@@ -55,11 +55,12 @@ public class Author {
         Genre = genre;
     }
 
-    public Set<Book> getLibrary() {
-        return library;
+
+    public Set<Book> getBooks() {
+        return books;
     }
 
-    public void setLibrary(Set<Book> library) {
-        this.library = library;
+    public void setBooks(Set<Book> books) {
+        this.books = books;
     }
 }

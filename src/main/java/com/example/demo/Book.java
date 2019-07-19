@@ -18,7 +18,7 @@ public class Book {
     private boolean inStock;
     private String sku;
 
-    @ManyToMany(mappedBy = "library")
+    @ManyToMany
     private Set<Author> Authors;
 
 

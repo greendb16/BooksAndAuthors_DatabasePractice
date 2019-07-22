@@ -9,7 +9,7 @@
     <div class="container">
         <input type="hidden" th:field="*{id}">
      Title:   <input type="text" th:field="*{title}">
-     Author:      <select th:field="*{writers}" multiple>
+     Author:      <select th:field="*{author}" multiple>
                 <option th:each="eachAuthor:${bookwriters}" th:value="${eachAuthor.id}" th:text="${eachAuthor.firstName + eachAuthor.lastName}"></option>
             </select>
      Description: <textarea rows="3" th:field="*{description}"></textarea>

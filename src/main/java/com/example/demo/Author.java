@@ -1,12 +1,13 @@
 package com.example.demo;
 
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.ManyToMany;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,8 +21,12 @@ public class Author {
     private String lastName;
     private String Genre;
 
-    @ManyToMany (mappedBy = "library")
+    @ManyToMany (mappedBy = "writers")
     private Set<Book> books;
+
+    public Author() {
+        books= new HashSet<>();
+    }
 
     public long getId() {
         return id;

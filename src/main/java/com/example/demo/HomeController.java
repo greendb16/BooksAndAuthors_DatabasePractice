@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.PostConstruct;
@@ -17,24 +18,25 @@ public class HomeController {
     BookRepository bookList;
 
     @Autowired
-    AuthorRepository authorRepository;
+    AuthorRepository bookWriters;
 
     @RequestMapping("/")
     public String index(Model model){
         model.addAttribute("booklist", bookList.findAll() );
-        model.addAttribute("authors", authorRepository.findAll());
+        model.addAttribute("writerlist", bookWriters.findAll());
         return "index";
     }
 
     @RequestMapping("/addbook")
     public String addBook(Model model){
         model.addAttribute("book", new Book());
-        model.addAttribute("bookAuthors", authorRepository.findAll());
-        return "book";
+        model.addAttribute("bookwriters", bookWriters.findAll());
+        return "Book";
     }
 
-    @RequestMapping("/savebook")
-    public String saveBook(@ModelAttribute("aBook") Book book, Model model){
+    @PostMapping("/savebook")
+    public String saveBook(@ModelAttribute("book") Book book, Model model)
+    {
         bookList.save(book);
         return "redirect:/";
     }
@@ -45,19 +47,19 @@ public class HomeController {
         a.setFirstName("J.K.");
         a.setLastName("Rowling");
         a.setGenre("Fantasy");
-        authorRepository.save(a);
+        bookWriters.save(a);
 
         a = new Author();
         a.setFirstName("J.R.R");
         a.setLastName("Tolkien");
         a.setGenre("Fantasy");
-        authorRepository.save(a);
+        bookWriters.save(a);
 
         a = new Author();
         a.setFirstName("Stephen");
         a.setLastName("King");
         a.setGenre("Horror");
-        authorRepository.save(a);
+        bookWriters.save(a);
 
     }
 }

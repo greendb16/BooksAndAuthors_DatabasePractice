@@ -2,6 +2,7 @@ package com.example.demo;
 
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -19,7 +20,11 @@ public class Book {
     private String sku;
 
     @ManyToMany
-    private Set<Author> Authors;
+    private Set<Author> writers;
+
+    public Book() {
+        writers=new HashSet<>();
+    }
 
 
     public long getId() {
@@ -78,11 +83,12 @@ public class Book {
         this.sku = sku;
     }
 
-    public Set<Author> getAuthors() {
-        return Authors;
+
+    public Set<Author> getWriters() {
+        return writers;
     }
 
-    public void setAuthors(Set<Author> authors) {
-        Authors = authors;
+    public void setWriters(Set<Author> writers) {
+        this.writers = writers;
     }
 }

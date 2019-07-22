@@ -7,12 +7,22 @@
 <body>
 
 <div class="container">
+    <a href="/addbook">Add a book</a>
+
     <h1>Books and their Authors</h1>
-    <div th:each="eachAuthor : ${authors}">
+    <div th:each="eachAuthor : ${writerlist}">
         <h2 th:text="${eachAuthor.firstName + eachAuthor.lastName}"></h2>
-        <h3 th:text="${#lists.size(eachAuthor.library)>0}?'My Books':'No Books for me'"></h3>
-            <div th:each="eachBook:${eachAuthor.library}">
-                <p th:text="${eachBook.title}"></p>
+        <h3 th:text="${#lists.size(eachAuthor.books)>0}?'My Books':'No Books for me'"></h3>
+            <div th:each="eachBook:${eachAuthor.books}">
+                <ul>
+                    <li> [[${eachBook.title}]]</li>
+                    <li> [[${eachBook.description}]]</li>
+                    <li> [[${eachBook.price}]]"</li>
+                    <li> [[${eachBook.inStock}]]</li>
+                    <li> [[${eachBook.sku}]]"</li>
+
+                </ul>
+
             </div>
     </div>
 
